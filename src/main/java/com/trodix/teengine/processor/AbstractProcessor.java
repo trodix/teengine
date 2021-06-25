@@ -14,7 +14,7 @@ public abstract class AbstractProcessor implements Processor {
     public abstract String getEndDelimiter();
 
     public Pattern getDelimiter() {
-        return Pattern.compile(MessageFormat.format("\\{0}w+\\{1}g", this.getStartDelimiter(), this.getEndDelimiter()));
+        return Pattern.compile(MessageFormat.format("{0}\\s*\\w+\\s*{1}", this.getStartDelimiter(), this.getEndDelimiter()));
     }
 
     public List<String> getVars(String rawTemplate) {
@@ -23,6 +23,17 @@ public abstract class AbstractProcessor implements Processor {
 
         while (matcher.find()) {
             matches.add(matcher.group().replaceFirst("\\" + this.getStartDelimiter(), "").replaceFirst("\\" + this.getEndDelimiter(), ""));
+        }
+
+        return matches;
+    }
+
+    public List<String> getPlaceholders(String rawTemplate) {
+        List<String> matches = new ArrayList<>();
+        Matcher matcher = getDelimiter().matcher(rawTemplate);
+
+        while (matcher.find()) {
+            matches.add(matcher.group());
         }
 
         return matches;
