@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.springframework.stereotype.Service;
-
-@Service
 public class PlaceholderProcessor extends AbstractProcessor {
 
     @Override

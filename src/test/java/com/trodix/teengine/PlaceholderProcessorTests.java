@@ -8,22 +8,26 @@ import java.util.Map;
 
 import com.trodix.teengine.core.processor.PlaceholderProcessor;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class PlaceholderProcessorTests {
 
-	@Autowired
-	private PlaceholderProcessor placeholderProcessor;
+	static PlaceholderProcessor placeholderProcessor;
+
+	@BeforeAll
+	public static void setup() {
+		placeholderProcessor = new PlaceholderProcessor();
+	}
 
 	@Test
 	void placeholderProcessor_replaceValueTest() {
 		String rawTemplate = "{cm:name}_{cpage-eco:nature-document}";
 
 		String expected = "toto.pdf_{cpage-eco:nature-document}";
-		String actual = this.placeholderProcessor.replaceValue(rawTemplate, "cm:name", "toto.pdf");
+		String actual = placeholderProcessor.replaceValue(rawTemplate, "cm:name", "toto.pdf");
 
 		assertEquals(expected, actual);
 	}
@@ -37,7 +41,7 @@ class PlaceholderProcessorTests {
 		keyValueAssoc.put("created_at", "2020-12-15");
 
 		String expected = "toto.pdf_FAC_{@date(created_at, yyyy-dd-MM)}";
-		String actual = this.placeholderProcessor.process(rawTemplate, keyValueAssoc);
+		String actual = placeholderProcessor.process(rawTemplate, keyValueAssoc);
 
 		assertEquals(expected, actual);
 	}

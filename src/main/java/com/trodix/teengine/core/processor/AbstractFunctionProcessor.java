@@ -16,11 +16,14 @@ public abstract class AbstractFunctionProcessor implements Processor {
 
     protected AbstractProcessor coreProcessor;
 
+    protected AbstractFunctionProcessor() {
+        this.coreProcessor = new PlaceholderProcessor();
+    }
+
     public abstract String getStartDelimiter();
     public abstract String getEndDelimiter();
     public abstract String getArgsDelimiter();
-
-    protected abstract void setAbstractProcessor(AbstractProcessor coreProcessor);
+    
 
     public Pattern getTemplateList() {
         String safeRegex = MessageFormat.format(".*(\\{0}\\s*[{1}]+\\s*\\w+\\s*,\\s*[\\w|-]+\\s*[{2}+]\\s*\\{3}).*", this.coreProcessor.getStartDelimiter(), this.getStartDelimiter(), this.getEndDelimiter(),  this.coreProcessor.getEndDelimiter());

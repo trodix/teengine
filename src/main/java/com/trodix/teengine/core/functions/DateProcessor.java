@@ -9,12 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.trodix.teengine.core.processor.AbstractFunctionProcessor;
-import com.trodix.teengine.core.processor.AbstractProcessor;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-@Service
 public class DateProcessor extends AbstractFunctionProcessor {
 
     @Override
@@ -39,11 +34,6 @@ public class DateProcessor extends AbstractFunctionProcessor {
         }
 
         return processedTemplate;
-    }
-
-    @Autowired
-    public void setAbstractProcessor(AbstractProcessor coreProcessor) {
-        this.coreProcessor = coreProcessor;
     }
 
     @Override
