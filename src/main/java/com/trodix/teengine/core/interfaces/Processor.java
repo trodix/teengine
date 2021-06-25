@@ -1,4 +1,4 @@
-package com.trodix.teengine.interfaces;
+package com.trodix.teengine.core.interfaces;
 
 import java.io.Serializable;
 import java.util.List;

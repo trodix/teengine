@@ -1,4 +1,4 @@
-package com.trodix.teengine.processor;
+package com.trodix.teengine.core.processor;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.trodix.teengine.interfaces.Processor;
+import com.trodix.teengine.core.interfaces.Processor;
 
 public abstract class AbstractProcessor implements Processor {
 

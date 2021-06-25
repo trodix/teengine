@@ -1,4 +1,4 @@
-package com.trodix.teengine.processor;
+package com.trodix.teengine.core.processor;
 
 import java.io.Serializable;
 import java.util.Map;

@@ -1,29 +1,26 @@
-package com.trodix.teengine.processor;
+package com.trodix.teengine.core.processor;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import com.trodix.teengine.interfaces.Processor;
+import com.trodix.teengine.core.interfaces.Processor;
 
 public abstract class AbstractFunctionProcessor implements Processor {
 
-    AbstractProcessor coreProcessor;
+    protected AbstractProcessor coreProcessor;
 
     public abstract String getStartDelimiter();
     public abstract String getEndDelimiter();
     public abstract String getArgsDelimiter();
 
-    public abstract void setAbstractProcessor(AbstractProcessor coreProcessor);
+    protected abstract void setAbstractProcessor(AbstractProcessor coreProcessor);
 
     public Pattern getTemplateList() {
         String safeRegex = MessageFormat.format(".*(\\{0}\\s*[{1}]+\\s*\\w+\\s*,\\s*[\\w|-]+\\s*[{2}+]\\s*\\{3}).*", this.coreProcessor.getStartDelimiter(), this.getStartDelimiter(), this.getEndDelimiter(),  this.coreProcessor.getEndDelimiter());

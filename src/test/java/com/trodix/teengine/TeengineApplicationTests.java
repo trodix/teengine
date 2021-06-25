@@ -8,8 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 
-import com.trodix.teengine.processor.DateProcessor;
-import com.trodix.teengine.processor.PlaceholderProcessor;
+import com.trodix.teengine.core.functions.DateProcessor;
+import com.trodix.teengine.core.processor.PlaceholderProcessor;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
