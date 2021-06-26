@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.trodix</groupId>
 	<artifactId>teengine</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0-RC1</version>
 	<name>teengine</name>
 	<description>Simple Template engine</description>
 	<packaging>jar</packaging>
