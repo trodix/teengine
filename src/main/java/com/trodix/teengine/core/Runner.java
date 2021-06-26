@@ -21,5 +21,5 @@ public class Runner {
         }
         return result;
     }
-    
+
 }

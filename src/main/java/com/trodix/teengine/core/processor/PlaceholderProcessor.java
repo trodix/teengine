@@ -11,7 +11,8 @@ public class PlaceholderProcessor extends AbstractProcessor {
         String processedTemplate = rawTemplate;
 
         for (Entry<String, Serializable> assocEntry : keyValueAssoc.entrySet()) {
-            processedTemplate = this.replaceValue(processedTemplate, assocEntry.getKey(), assocEntry.getValue().toString());
+            processedTemplate = this.replaceValue(processedTemplate, assocEntry.getKey(),
+                    assocEntry.getValue().toString());
         }
 
         return processedTemplate;
@@ -26,5 +27,5 @@ public class PlaceholderProcessor extends AbstractProcessor {
     public String getEndDelimiter() {
         return "}";
     }
-    
+
 }

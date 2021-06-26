@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.trodix.teengine.core.interfaces.Processor;
 import com.trodix.teengine.core.processor.PlaceholderProcessor;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -15,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class PlaceholderProcessorTests {
 
-	static PlaceholderProcessor placeholderProcessor;
+	static Processor placeholderProcessor;
 
 	@BeforeAll
 	public static void setup() {

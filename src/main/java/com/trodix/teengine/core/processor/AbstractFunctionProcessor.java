@@ -10,9 +10,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import com.trodix.teengine.core.interfaces.Processor;
+import com.trodix.teengine.core.interfaces.FunctionProcessor;
 
-public abstract class AbstractFunctionProcessor implements Processor {
+public abstract class AbstractFunctionProcessor implements FunctionProcessor {
 
     protected AbstractProcessor coreProcessor;
 
@@ -20,26 +20,18 @@ public abstract class AbstractFunctionProcessor implements Processor {
         this.coreProcessor = new PlaceholderProcessor();
     }
 
-    public abstract String getStartDelimiter();
-    public abstract String getEndDelimiter();
-    public abstract String getArgsDelimiter();
-    
-
     public Pattern getTemplateList() {
-        String safeRegex = MessageFormat.format(".*(\\{0}\\s*[{1}]+\\s*\\w+\\s*,\\s*[\\w|-]+\\s*[{2}+]\\s*\\{3}).*", this.coreProcessor.getStartDelimiter(), this.getStartDelimiter(), this.getEndDelimiter(),  this.coreProcessor.getEndDelimiter());
+        String safeRegex = MessageFormat.format(".*(\\{0}\\s*[{1}]+\\s*\\w+\\s*,\\s*[\\w|-]+\\s*[{2}+]\\s*\\{3}).*",
+                this.coreProcessor.getStartDelimiter(), this.getStartDelimiter(), this.getEndDelimiter(),
+                this.coreProcessor.getEndDelimiter());
         return Pattern.compile(safeRegex);
     }
 
     public Pattern getTemplateByKey(String key) {
-        String safeRegex = MessageFormat.format(".*(\\{0}\\s*[{1}]+\\s*{2}\\s*,\\s*[\\w|-]+\\s*[{3}+]\\s*\\{4}).*", this.coreProcessor.getStartDelimiter(), this.getStartDelimiter(), key, this.getEndDelimiter(), this.coreProcessor.getEndDelimiter());
+        String safeRegex = MessageFormat.format(".*(\\{0}\\s*[{1}]+\\s*{2}\\s*,\\s*[\\w|-]+\\s*[{3}+]\\s*\\{4}).*",
+                this.coreProcessor.getStartDelimiter(), this.getStartDelimiter(), key, this.getEndDelimiter(),
+                this.coreProcessor.getEndDelimiter());
         return Pattern.compile(safeRegex);
-    }
-
-    public List<String> getPipeChain(String rawTemplate) {
-        List<String> chain = Arrays.asList(rawTemplate.split("|"));
-        // remove the value, keep args
-        chain.remove(0);
-        return chain;
     }
 
     public Map<String, List<String>> getValueArgsPair(String rawTemplate) {
@@ -47,7 +39,8 @@ public abstract class AbstractFunctionProcessor implements Processor {
 
         for (String match : this.getVars(rawTemplate)) {
             List<String> currentArgs = new ArrayList<>();
-            currentArgs.addAll(Arrays.asList(match.split(this.getArgsDelimiter())).stream().map(i -> i.trim()).collect(Collectors.toList()));
+            currentArgs.addAll(Arrays.asList(match.split(this.getArgsDelimiter())).stream().map(i -> i.trim())
+                    .collect(Collectors.toList()));
 
             String value = currentArgs.get(0);
             currentArgs.remove(0);
@@ -71,18 +64,14 @@ public abstract class AbstractFunctionProcessor implements Processor {
     }
 
     public String removeDelimiter(String input) {
-        return input
-            .replace(this.coreProcessor.getStartDelimiter(), "")
-            .replace(this.getStartDelimiter(), "")
-            .replace(this.getEndDelimiter(), "")
-            .replace(this.coreProcessor.getEndDelimiter(), "")
-        ;
+        return input.replace(this.coreProcessor.getStartDelimiter(), "").replace(this.getStartDelimiter(), "")
+                .replace(this.getEndDelimiter(), "").replace(this.coreProcessor.getEndDelimiter(), "");
     }
 
     public String replaceValue(String rawTemplate, String key, String value) {
         String result = rawTemplate;
         Matcher matcher = this.getTemplateByKey(key).matcher(rawTemplate);
-        
+
         while (matcher.find()) {
             String patternToReplace = matcher.group(1);
             result = result.replace(patternToReplace, value);

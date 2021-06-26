@@ -34,5 +34,5 @@ public class ProcessorConfiguration {
     public List<Processor> getRegisteredProcessors() {
         return this.registeredProcessors;
     }
-    
+
 }

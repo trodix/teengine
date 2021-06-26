@@ -24,8 +24,10 @@ public class DateProcessor extends AbstractFunctionProcessor {
                     DateTimeFormatter formater = DateTimeFormatter.ofPattern(dateFormat);
 
                     try {
-                        LocalDate value = LocalDate.from(DateTimeFormatter.ISO_LOCAL_DATE.parse(assocEntry.getValue().toString()));
-                        processedTemplate = this.replaceValue(processedTemplate, assocEntry.getKey(), formater.format(value));
+                        LocalDate value = LocalDate
+                                .from(DateTimeFormatter.ISO_LOCAL_DATE.parse(assocEntry.getValue().toString()));
+                        processedTemplate = this.replaceValue(processedTemplate, assocEntry.getKey(),
+                                formater.format(value));
                     } catch (DateTimeParseException e) {
                         e.printStackTrace();
                     }
