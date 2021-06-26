@@ -13,9 +13,7 @@ import com.trodix.teengine.core.interfaces.FunctionProcessor;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
 class DateProcessorTests {
 
 	static FunctionProcessor dateProcessor;
