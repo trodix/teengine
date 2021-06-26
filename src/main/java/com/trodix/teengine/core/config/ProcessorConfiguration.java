@@ -11,6 +11,9 @@ public class ProcessorConfiguration {
 
     private List<Processor> registeredProcessors;
 
+    /**
+     * Constructor
+     */
     public ProcessorConfiguration() {
         this.registeredProcessors = new ArrayList<>();
         this.init();
@@ -25,12 +28,23 @@ public class ProcessorConfiguration {
         this.registeredProcessors.add(new DateProcessor());
     }
 
+    /**
+     * Register a new processor to use in the runner
+     * 
+     * @param processor The new processor to register
+     * @return All registered processors
+     */
     public List<Processor> addRegisteredProcessors(Processor processor) {
         this.registeredProcessors.add(processor);
 
         return this.getRegisteredProcessors();
     }
 
+    /**
+     * Get all registered processors for this configuration
+     * 
+     * @return All registered processors
+     */
     public List<Processor> getRegisteredProcessors() {
         return this.registeredProcessors;
     }

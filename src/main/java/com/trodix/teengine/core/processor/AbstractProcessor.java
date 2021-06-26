@@ -30,17 +30,6 @@ public abstract class AbstractProcessor implements Processor {
         return input.replace(this.getStartDelimiter(), "").replace(this.getEndDelimiter(), "");
     }
 
-    public List<String> getPlaceholders(String rawTemplate) {
-        List<String> matches = new ArrayList<>();
-        Matcher matcher = getTemplateList().matcher(rawTemplate);
-
-        while (matcher.find()) {
-            matches.add(matcher.group());
-        }
-
-        return matches;
-    }
-
     public String replaceValue(String rawTemplate, String key, String value) {
         String patternToReplace = this.getStartDelimiter() + key + this.getEndDelimiter();
         return rawTemplate.replace(patternToReplace, value);
