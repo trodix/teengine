@@ -1,5 +1,7 @@
 # Teengine - A Java template engine
 
+[![Teengine Actions Status](https://github.com/trodix/teengine/actions/workflows/maven.yml/badge.svg)](https://github.com/trodix/teengine/actions)
+
 ## How to use?
 
 ```java
